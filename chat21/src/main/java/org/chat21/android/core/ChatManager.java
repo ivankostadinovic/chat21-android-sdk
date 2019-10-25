@@ -423,6 +423,10 @@ public class ChatManager {
         return mInstance;
     }
 
+    public static ChatManager getJustInstance() {
+        return mInstance;
+    }
+
 //
 //    public ConversationsHandler addGroupsListener(ConversationsListener conversationsListener) {
 ////        ConversationsHandler conversationsHandler = new ConversationsHandler(
