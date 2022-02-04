@@ -1,9 +1,11 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+
 
 // source:
 // https://stackoverflow.com/questions/21329849/set-android-app-version-using-gradle
 def computeVersionName() {
-    return "1.0.12"
+    return "1.0.13"
 }
 
 android {
@@ -89,28 +91,15 @@ configurations.all {
     }
 }
 
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'chat21'
-
-    publishedGroupId = 'org.chat21.android'
-    libraryName = 'chat21'
-    artifact = 'chat21'
-
-    libraryDescription = 'Android Chat SDK built on Firebase'
-
-    siteUrl = 'http://www.chat21.org/'
-    gitUrl = 'https://github.com/chat21/chat21-android-sdk.git'
-
-    libraryVersion = computeVersionName()
-    developerId = 'frontiere21'
-    developerName = 'Stefano De Pascalis'
-    developerEmail = 'stefano.depascalis@frontiere21.it'
-
-    licenseName = 'AGPL-V3'
-    licenseUrl = 'https://github.com/chat21/chat21-android-sdk/blob/master/LICENSE.txt'
-    allLicenses = ["AGPL-V3"]
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.ivankostadinovic'
+                artifactId = 'ExoPlayerWrapper'
+                version = '1.0.13'
+            }
+        }
+    }
 }
-
-//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
