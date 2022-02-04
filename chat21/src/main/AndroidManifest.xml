@@ -6,14 +6,14 @@
         android:allowBackup="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="org.chat21.android.ui.login.activities.ChatLoginActivity"></activity>
+        <activity android:name="org.chat21.android.ui.login.activities.ChatLoginActivity" />
 
-        <activity android:name="org.chat21.android.ui.login.activities.ChatSignUpActivity"></activity>
+        <activity android:name="org.chat21.android.ui.login.activities.ChatSignUpActivity" />
 
-        <!--display the contact list-->
         <activity
             android:name="org.chat21.android.ui.contacts.activites.ContactListActivity"
-            android:label="@string/string_contact_list_activity_title">
+            android:label="@string/string_contact_list_activity_title"
+            android:exported="false">
 
             <meta-data
                 android:name="android.app.searchable"
@@ -23,29 +23,19 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
 
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN" />-->
-
-            <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
         </activity>
 
-        <!--display the list of all active conversation-->
         <activity
             android:name="org.chat21.android.ui.conversations.activities.ConversationListActivity"
             android:label="@string/string_conversation_list_activity_title" />
 
-        <!--display the list of all archived conversation-->
         <activity
             android:name="org.chat21.android.ui.archived_conversations.activities.ArchivedConversationListActivity"
             android:label="@string/activity_archived_conversation_list_title" />
 
-        <!--display the list of all messages into a specific conversation-->
-        <activity android:name="org.chat21.android.ui.messages.activities.MessageListActivity">
+        <activity android:name="org.chat21.android.ui.messages.activities.MessageListActivity"
+            android:exported="true">
 
-            <!-- http://stackoverflow.com/questions/39663601/open-a-specific-activity-from-firebase-notification
-             from notification
-             bugfix Issue #39-->
             <intent-filter>
                 <action android:name="ACTION_DEFAULT_CHAT_INTENT" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -56,25 +46,24 @@
 
         <activity
             android:name="org.chat21.android.ui.chat_groups.activities.NewGroupActivity"
-            android:label="@string/string_create_group_activity_title"></activity>
+            android:label="@string/string_create_group_activity_title" />
 
         <activity
             android:name="org.chat21.android.ui.chat_groups.activities.AddMemberToChatGroupActivity"
-            android:label="@string/string_add_members_activity_title"></activity>
+            android:label="@string/string_add_members_activity_title" />
 
 
-        <activity android:name="org.chat21.android.ui.chat_groups.activities.GroupAdminPanelActivity"></activity>
+        <activity android:name="org.chat21.android.ui.chat_groups.activities.GroupAdminPanelActivity" />
 
-        <!--display the user profile-->
         <activity android:name="org.chat21.android.ui.users.activities.PublicProfileActivity" />
 
         <activity
             android:name="org.chat21.android.ui.chat_groups.activities.ChatGroupsListActivity"
-            android:label="@string/activity_group_list_activity_title"></activity>
+            android:label="@string/activity_group_list_activity_title" />
 
 
-        <!--https://firebase.google.com/docs/notifications/android/console-audience-->
-        <service android:name="org.chat21.android.notifications.ChatFirebaseMessagingService">
+        <service android:name="org.chat21.android.notifications.ChatFirebaseMessagingService"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -96,19 +85,22 @@
          This is required for sending to specific devices or for creating device groups.-->
         <service
             android:name="org.chat21.android.instanceid.service.SaveFirebaseInstanceIdService"
-            tools:ignore="ExportedService">
+            tools:ignore="ExportedService"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 
-        <receiver android:name="org.chat21.android.connectivity.NetworkReceiver">
+        <receiver android:name="org.chat21.android.connectivity.NetworkReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
 
-        <receiver android:name="org.chat21.android.core.receivers.ShutdownReceiver">
+        <receiver android:name="org.chat21.android.core.receivers.ShutdownReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.ACTION_SHUTDOWN" />
                 <action android:name="android.intent.action.QUICKBOOT_POWEROFF" />
