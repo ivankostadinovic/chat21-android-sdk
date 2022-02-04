@@ -97,7 +97,7 @@ afterEvaluate {
             release(MavenPublication) {
                 from components.release
                 groupId = 'com.github.ivankostadinovic'
-                artifactId = 'ExoPlayerWrapper'
+                artifactId = 'chat21-android-sdk'
                 version = '1.0.13'
             }
         }
